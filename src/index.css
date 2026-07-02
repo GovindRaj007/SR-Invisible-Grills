@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 99%;
+    --foreground: 221 35% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 221 35% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 35% 20%;
+    --primary: 218 63% 24%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 221 58% 16%;
+    --secondary: 221 35% 18%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-dark: 221 40% 12%;
+    --muted: 210 33% 97%;
+    --muted-foreground: 220 16% 47%;
+    --accent: 214 100% 95%;
+    --accent-foreground: 221 35% 20%;
+    --destructive: 4 68% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 24% 88%;
+    --input: 214 24% 88%;
+    --ring: 218 63% 24%;
+    --radius: 0.75rem;
+
+    --surface: 210 33% 99%;
+    --surface-dark: 221 35% 18%;
+    --surface-darker: 221 40% 14%;
+
+    --gradient-hero: linear-gradient(135deg, #14233D 0%, #102B5E 100%);
+    --gradient-golden: linear-gradient(135deg, #102B5E 0%, #163D7A 100%);
+    --gradient-dark: linear-gradient(135deg, #14233D 0%, #102B5E 100%);
+    --gradient-section: linear-gradient(180deg, #FFFFFF 0%, #F6F8FB 100%);
+
+    --shadow-brand: 0 10px 30px rgba(16, 43, 94, 0.16);
+    --shadow-brand-hover: 0 0 0 2px rgba(16, 43, 94, 0.16);
+    --shadow-card: 0 10px 30px rgba(20, 35, 61, 0.08);
+    --shadow-card-hover: 0 18px 40px rgba(16, 43, 94, 0.14);
+
+    --sidebar-background: 210 33% 99%;
+    --sidebar-foreground: 221 35% 20%;
+    --sidebar-primary: 221 35% 18%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 100% 95%;
+    --sidebar-accent-foreground: 221 35% 20%;
+    --sidebar-border: 214 24% 88%;
+    --sidebar-ring: 218 63% 24%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .section-light {
+    @apply bg-background;
+  }
+  .section-surface {
+    @apply bg-[#F6F8FB];
+  }
+  .section-dark {
+    background: var(--gradient-dark);
+    @apply text-secondary-foreground;
+  }
+  .golden-label {
+    @apply bg-primary text-white font-heading text-sm font-bold uppercase tracking-[0.15em] px-4 py-2 rounded-lg inline-block;
+  }
+  .golden-underline {
+    @apply relative inline-block;
+  }
+  .golden-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[3px] bg-primary rounded-full;
+  }
+  .golden-pill {
+    @apply inline-block px-3 py-1 text-xs font-semibold rounded-full border border-[#D9E1EC] bg-[#F6F8FB] text-primary;
+  }
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .btn-golden {
+    background: var(--gradient-golden);
+    box-shadow: var(--shadow-brand);
+    @apply text-white font-heading font-bold px-6 py-3 rounded-lg transition-all duration-300;
+  }
+  .btn-golden:hover {
+    @apply opacity-90 scale-[1.02];
+  }
+  .btn-charcoal {
+    @apply bg-white text-primary font-heading font-bold px-6 py-3 rounded-lg border-2 border-primary transition-all duration-300;
+  }
+  .btn-charcoal:hover {
+    @apply bg-[#F6F8FB];
+  }
+  .btn-outline-charcoal {
+    @apply bg-transparent text-primary font-heading font-bold px-6 py-3 rounded-lg border-2 border-primary/30 transition-all duration-300;
+  }
+  .btn-outline-charcoal:hover {
+    @apply bg-[#F6F8FB] border-primary;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
