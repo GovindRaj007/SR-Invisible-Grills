@@ -373,8 +373,8 @@ export default function Contact() {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <p className="font-semibold text-white">Call Us</p>
-                    <p className="text-white/70">{BUSINESS.phone}</p>
+                    <p className="font-semibold text-foreground">Call Us</p>
+                    <p className="text-muted-foreground">{BUSINESS.phone}</p>
                   </div>
                 </a>
 
@@ -384,8 +384,8 @@ export default function Contact() {
                     <WhatsAppIcon className="h-6 w-6 text-[#25D366]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">WhatsApp</p>
-                    <p className="text-white/70">Chat with us instantly</p>
+                    <p className="font-semibold text-foreground">WhatsApp</p>
+                    <p className="text-muted-foreground">Chat with us instantly</p>
                   </div>
                 </a>
 
@@ -395,8 +395,8 @@ export default function Contact() {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Email</p>
-                    <p className="text-white/70">{BUSINESS.email}</p>
+                    <p className="font-semibold text-foreground">Email</p>
+                    <p className="text-muted-foreground">{BUSINESS.email}</p>
                   </div>
                 </a>
               </div>
@@ -406,7 +406,7 @@ export default function Contact() {
                 <h3 className="mb-4 font-heading text-lg font-semibold text-white">Business Hours</h3>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <Clock className="mt-0.5 h-5 w-5 text-primary" />
+                    <Clock className="mt-0.5 h-5 w-5 text-blue-400" />
                     <div className="text-white/70">
                       <p>{BUSINESS.hours}</p>
                     </div>

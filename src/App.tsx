@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,6 +28,52 @@ const locationRoutes = locationPages.map((item) => ({
   slug: item.slug,
 }));
 
+const RouteTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const win = window as Window & { dataLayer?: Array<Record<string, unknown>> };
+    win.dataLayer = win.dataLayer || [];
+    win.dataLayer.push({
+      event: "pageview",
+      page_path: location.pathname,
+      page_title: document.title,
+    });
+  }, [location.pathname]);
+
+  return null;
+};
+
+const ContactClickTracker = () => {
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target.closest("a, button") : null;
+      if (!target) return;
+
+      const href = target instanceof HTMLAnchorElement ? target.getAttribute("href") : null;
+      const label = (target.textContent || target.getAttribute("aria-label") || target.getAttribute("title") || "").trim();
+      const isWhatsApp = Boolean(href?.includes("wa.me") || label.toLowerCase().includes("whatsapp"));
+      const isCall = Boolean(href?.startsWith("tel:") || label.toLowerCase().includes("call"));
+
+      if (!isWhatsApp && !isCall) return;
+
+      const win = window as Window & { dataLayer?: Array<Record<string, unknown>> };
+      win.dataLayer = win.dataLayer || [];
+      win.dataLayer.push({
+        event: "contact_click",
+        contact_type: isWhatsApp ? "whatsapp" : "call",
+        contact_label: label || (isWhatsApp ? "WhatsApp" : "Call"),
+        contact_href: href || "",
+      });
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
+  return null;
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -35,6 +81,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <RouteTracker />
+          <ContactClickTracker />
           <ScrollToTop />
           <Navbar />
           <main className="pt-16 md:pt-20">
