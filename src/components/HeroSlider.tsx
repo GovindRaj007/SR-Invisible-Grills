@@ -31,8 +31,18 @@ export default function HeroSlider() {
   const next = useCallback(() => setCurrent((p) => (p + 1) % slides.length), []);
 
   useEffect(() => {
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = slides[0]?.image || '';
+    preloadLink.fetchPriority = 'high';
+    document.head.appendChild(preloadLink);
+
     intervalRef.current = setInterval(next, 5000);
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      document.head.contains(preloadLink) && preloadLink.remove();
+      clearInterval(intervalRef.current);
+    };
   }, [next]);
 
   const resetTimer = () => {
@@ -70,8 +80,11 @@ export default function HeroSlider() {
           <img
             src={slide.image}
             alt={slide.label}
-            className="absolute inset-0 w-full h-full "
+            className="absolute inset-0 w-full h-full"
             loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            fetchPriority={i === 0 ? 'high' : 'low'}
+            sizes="(max-width: 768px) 100vw, 100vw"
             width={1920}
             height={1080}
           />

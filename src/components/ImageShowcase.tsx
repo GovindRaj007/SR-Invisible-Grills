@@ -119,7 +119,10 @@ export function ImageShowcase() {
                     src={image.src}
                     alt={image.alt}
                     className="h-full w-full object-cover"
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 85vw, 80vw"
                   />
                   {/* Label Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[hsl(222,47%,11%,0.85)] to-transparent px-6 pb-6 pt-12">
@@ -172,7 +175,10 @@ export function ImageShowcase() {
                       src={image.src}
                       alt={image.alt}
                       className="h-full w-full object-cover"
-                      loading="lazy"
+                      loading={isCenter ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={isCenter ? "high" : "low"}
+                      sizes="(max-width: 768px) 85vw, 360px"
                     />
                   </div>
                   {/* Label - Only show for center card */}

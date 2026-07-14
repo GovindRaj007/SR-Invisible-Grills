@@ -49,9 +49,12 @@ export default function Footer() {
             >
               <div className="flex items-center justify-center rounded-md bg-white py-3 shadow-md">
                 <img
-                  src={brandLogo} 
-                  alt="SR Invisible Grills & Safety Nets Logo" 
+                  src={brandLogo}
+                  alt="SR Invisible Grills & Safety Nets Logo"
                   className="h-14 w-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
               </div>
             </Link>
@@ -135,7 +138,7 @@ export default function Footer() {
           <Collapsible
             open={quickLinksOpen}
             onOpenChange={setQuickLinksOpen}
-            className="rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-sm"
+            className="rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-sm lg:self-start lg:max-h-[34rem] lg:overflow-auto"
           >
             <CollapsibleTrigger className="flex w-full items-center justify-between gap-3 text-left">
               <span className="font-heading text-sm font-bold text-white">Quick Links</span>

@@ -22,8 +22,10 @@ const localBusinessJsonLd = {
   email: BUSINESS.email,
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Door no: 8/3, 14th St, Vallal Pari Nagar, Pari Nagar, Pallikaranai',
     addressLocality: 'Chennai',
     addressRegion: 'Tamil Nadu',
+    postalCode: '600100',
     addressCountry: 'IN',
   },
   url: 'https://srinvisiblegrillschennai.in',
@@ -45,6 +47,11 @@ const localBusinessJsonLd = {
     },
   ],
   openingHours: 'Mo-Sa 09:00-19:00',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 12.979471249228329,
+    longitude: 80.20454437116413,
+  },
 };
 
 export default function Index() {

@@ -18,7 +18,6 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
     service: "",
     message: "",
   });
@@ -28,13 +27,11 @@ export default function Contact() {
   const [errors, setErrors] = useState({
     name: "",
     phone: "",
-    email: "",
   });
   
   const [touched, setTouched] = useState({
     name: false,
     phone: false,
-    email: false,
   });
   
   const { toast } = useToast();
@@ -48,37 +45,30 @@ export default function Contact() {
 
   const isPhoneValid = (phone: string) => /^\d{10}$/.test(phone);
 
-  const isEmailValid = (email: string) => {
-    if (email.trim() === "") return true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email.trim());
-  };
-
-  const isFormValid = 
-    isNameValid(formData.name) && 
-    isPhoneValid(formData.phone) && 
-    isEmailValid(formData.email) &&
+  const isFormValid =
+    isNameValid(formData.name) &&
+    isPhoneValid(formData.phone) &&
     formData.service !== "";
 
   // Form handlers
   const handleNameChange = (value: string) => {
-    setFormData({...formData, name: value});
+    setFormData((prev) => ({ ...prev, name: value }));
     
     if (touched.name) {
       if (value.trim().length === 0) {
-        setErrors({...errors, name: ""});
+        setErrors((prev) => ({ ...prev, name: "" }));
       } else if (!isNameValid(value)) {
-        setErrors({...errors, name: "Enter a valid full name"});
+        setErrors((prev) => ({ ...prev, name: "Enter a valid full name" }));
       } else {
-        setErrors({...errors, name: ""});
+        setErrors((prev) => ({ ...prev, name: "" }));
       }
     }
   };
 
   const handleNameBlur = () => {
-    setTouched({...touched, name: true});
+    setTouched((prev) => ({ ...prev, name: true }));
     if (formData.name.trim().length > 0 && !isNameValid(formData.name)) {
-      setErrors({...errors, name: "Enter a valid full name"});
+      setErrors((prev) => ({ ...prev, name: "Enter a valid full name" }));
     }
   };
 
@@ -86,46 +76,23 @@ export default function Contact() {
     const digitsOnly = value.replace(/\D/g, "");
     const limitedDigits = digitsOnly.slice(0, 10);
     
-    setFormData({...formData, phone: limitedDigits});
+    setFormData((prev) => ({ ...prev, phone: limitedDigits }));
     
     if (touched.phone) {
       if (limitedDigits.length === 0) {
-        setErrors({...errors, phone: ""});
+        setErrors((prev) => ({ ...prev, phone: "" }));
       } else if (!isPhoneValid(limitedDigits)) {
-        setErrors({...errors, phone: "Enter a valid 10-digit phone number"});
+        setErrors((prev) => ({ ...prev, phone: "Enter a valid 10-digit phone number" }));
       } else {
-        setErrors({...errors, phone: ""});
+        setErrors((prev) => ({ ...prev, phone: "" }));
       }
     }
   };
 
   const handlePhoneBlur = () => {
-    setTouched({...touched, phone: true});
+    setTouched((prev) => ({ ...prev, phone: true }));
     if (formData.phone.length > 0 && !isPhoneValid(formData.phone)) {
-      setErrors({...errors, phone: "Enter a valid 10-digit phone number"});
-    }
-  };
-
-  const handleEmailChange = (value: string) => {
-    setFormData({...formData, email: value});
-    
-    if (touched.email) {
-      if (value.trim().length === 0) {
-        setErrors({...errors, email: ""});
-      } else if (!isEmailValid(value)) {
-        setErrors({...errors, email: "Enter a valid email address"});
-      } else {
-        setErrors({...errors, email: ""});
-      }
-    }
-  };
-
-  const handleEmailBlur = () => {
-    setTouched({...touched, email: true});
-    if (formData.email.trim().length > 0 && !isEmailValid(formData.email)) {
-      setErrors({...errors, email: "Enter a valid email address"});
-    } else {
-      setErrors({...errors, email: ""});
+      setErrors((prev) => ({ ...prev, phone: "Enter a valid 10-digit phone number" }));
     }
   };
 
@@ -137,6 +104,7 @@ export default function Contact() {
         title: "Validation Error",
         description: "Please fill all required fields correctly.",
         variant: "destructive",
+        duration: 4000,
       });
       return;
     }
@@ -144,55 +112,47 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = "https://formspree.io/f/mdalzypl";
-      form.style.display = "none";
+      const payload = new FormData();
+      payload.append("name", formData.name.trim());
+      payload.append("phone", formData.phone);
+      payload.append("service", formData.service);
+      payload.append("message", formData.message.trim());
 
-      const fields = {
-        name: formData.name.trim(),
-        phone: formData.phone,
-        email: formData.email.trim() || "no-email@provided.com",
-        service: formData.service,
-        message: formData.message.trim() || "",
-      };
-
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
+      const response = await fetch("https://formspree.io/f/xykrzgjn", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: payload,
       });
 
-      document.body.appendChild(form);
+      if (!response.ok) {
+        throw new Error("Unable to submit enquiry right now.");
+      }
 
       toast({
         title: "Success!",
         description: "Your enquiry has been submitted. We'll contact you within 2 hours.",
+        duration: 4000,
       });
 
       setFormData({
         name: "",
         phone: "",
-        email: "",
         service: "",
         message: "",
       });
-      setErrors({ name: "", phone: "", email: "" });
-      setTouched({ name: false, phone: false, email: false });
-
-      setTimeout(() => {
-        form.submit();
-      }, 1000);
-
+      setErrors({ name: "", phone: "" });
+      setTouched({ name: false, phone: false });
     } catch (error) {
       console.error("Submission error:", error);
       toast({
         title: "Error",
         description: "Failed to submit form. Please try again or contact us directly.",
         variant: "destructive",
+        duration: 4000,
       });
+    } finally {
       setLoading(false);
     }
   };
@@ -285,33 +245,6 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-white/90">Email Address (Optional)</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your@email.com" 
-                    value={formData.email}
-                    onChange={(e) => handleEmailChange(e.target.value)}
-                    onBlur={handleEmailBlur}
-                    className={`bg-white/10 text-white placeholder:text-white/50 ${
-                      errors.email 
-                        ? "border-red-500 border-2" 
-                        : touched.email && formData.email.trim().length > 0 && isEmailValid(formData.email)
-                        ? "border-green-500 border-2"
-                        : "border-white/20"
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-400 font-medium">{errors.email}</p>
-                  )}
-                  {!errors.email && touched.email && formData.email.trim().length > 0 && isEmailValid(formData.email) && (
-                    <p className="text-sm text-green-400 font-medium flex items-center gap-1">
-                      <CheckCircle className="h-3 w-3" /> Valid email
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
                   <Label htmlFor="service" className="text-white/90">Service Required *</Label>
                   <Select 
                     value={formData.service} 
@@ -351,7 +284,7 @@ export default function Contact() {
                   {loading ? "Submitting..." : "Submit Enquiry"}
                 </Button>
 
-                {!isFormValid && (touched.name || touched.phone || touched.email) && (
+                {!isFormValid && (touched.name || touched.phone) && (
                   <p className="text-sm text-amber-400 text-center">
                     Please fill all required fields correctly to submit
                   </p>

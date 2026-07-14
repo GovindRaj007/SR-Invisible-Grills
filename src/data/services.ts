@@ -32,7 +32,7 @@ export const BUSINESS = {
   secondaryPhone: "+91-9121149915",
   whatsapp: "917670984773",
   email: "sr.securesolutions.tn@gmail.com",
-  address: "34/10a, Sathya Moorthy Street, Kamaraj Nagar, Choolaimedu - 600094",
+  address: "Door no: 8/3, 14th St, Vallal Pari Nagar, Pari Nagar, Pallikaranai, Chennai, Greater Chennai, Tamil Nadu 600100",
   hours: "Mon–Sat, 9AM–7PM",
   city: "Chennai",
   areas: ["Anna Nagar", "Velachery", "OMR", "T. Nagar", "Adyar", "Tambaram", "Porur", "Nungambakkam", "All of Chennai"],

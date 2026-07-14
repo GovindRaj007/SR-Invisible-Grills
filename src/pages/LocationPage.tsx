@@ -61,7 +61,16 @@ export default function LocationPage() {
 
       <div>
         <section className="relative h-[61vh] md:h-[60vh] overflow-hidden">
-          <img src={heroImage} alt={`${content.name} safety solutions`} className="absolute inset-0 h-full w-full object-cover" width={1920} height={1080} />
+          <img
+            src={heroImage}
+            alt={`${content.name} safety solutions`}
+            className="absolute inset-0 h-full w-full object-cover"
+            width={1920}
+            height={1080}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(20,35,61,0.92) 35%, rgba(16,43,94,0.22) 100%)' }} />
           <div className="relative z-10 flex h-full flex-col justify-end container mx-auto px-4 pb-10 pt-20 md:pb-12 md:pt-24">
             <Breadcrumb items={[{ label: content.name }]} />
