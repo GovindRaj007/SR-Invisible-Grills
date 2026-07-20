@@ -69,7 +69,7 @@ export default function LocationPage() {
             height={1080}
             loading="eager"
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(20,35,61,0.92) 35%, rgba(16,43,94,0.22) 100%)' }} />
           <div className="relative z-10 flex h-full flex-col justify-end container mx-auto px-4 pb-10 pt-20 md:pb-12 md:pt-24">

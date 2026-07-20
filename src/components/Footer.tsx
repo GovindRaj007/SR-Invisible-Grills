@@ -54,7 +54,7 @@ export default function Footer() {
                   className="h-14 w-auto object-contain"
                   loading="lazy"
                   decoding="async"
-                  fetchPriority="low"
+                  fetchpriority="low"
                 />
               </div>
             </Link>

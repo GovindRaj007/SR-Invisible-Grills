@@ -83,7 +83,7 @@ export default function HeroSlider() {
             className="absolute inset-0 w-full h-full"
             loading={i === 0 ? 'eager' : 'lazy'}
             decoding="async"
-            fetchPriority={i === 0 ? 'high' : 'low'}
+            fetchpriority={i === 0 ? 'high' : 'low'}
             sizes="(max-width: 768px) 100vw, 100vw"
             width={1920}
             height={1080}

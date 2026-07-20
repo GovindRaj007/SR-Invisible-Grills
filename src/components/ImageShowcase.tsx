@@ -121,7 +121,7 @@ export function ImageShowcase() {
                     className="h-full w-full object-cover"
                     loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
-                    fetchPriority={index === 0 ? "high" : "low"}
+                    fetchpriority={index === 0 ? "high" : "low"}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 85vw, 80vw"
                   />
                   {/* Label Overlay */}
@@ -177,7 +177,7 @@ export function ImageShowcase() {
                       className="h-full w-full object-cover"
                       loading={isCenter ? "eager" : "lazy"}
                       decoding="async"
-                      fetchPriority={isCenter ? "high" : "low"}
+                      fetchpriority={isCenter ? "high" : "low"}
                       sizes="(max-width: 768px) 85vw, 360px"
                     />
                   </div>
