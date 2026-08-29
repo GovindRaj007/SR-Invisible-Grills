@@ -19,6 +19,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const About = lazy(() => import("./pages/About"));
 const LocationPage = lazy(() => import("./pages/LocationPage"));
+const CeilingClothHangersLanding = lazy(() => import("./pages/CeilingClothHangersLanding"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -92,6 +93,7 @@ const App = () => (
               <Route path="/contact" element={<Suspense fallback={<LoadingPages />}><Contact /></Suspense>} />
               <Route path="/privacy-policy" element={<Suspense fallback={<LoadingPages />}><PrivacyPolicy /></Suspense>} />
               <Route path="/about" element={<Suspense fallback={<LoadingPages />}><About /></Suspense>} />
+              <Route path="/ceiling-cloth-hangers-chennai" element={<Suspense fallback={<LoadingPages />}><CeilingClothHangersLanding /></Suspense>} />
               {locationRoutes.map((route) => (
                 <Route
                   key={route.slug}

@@ -8,7 +8,7 @@ const servicesText = fs.readFileSync(servicesPath, 'utf-8');
 const locationText = fs.readFileSync(locationsPath, 'utf-8');
 const locationJson = locationText.slice(locationText.indexOf('export const locationPages'));
 const locationSlugs = [...locationJson.matchAll(/^\s{4}slug:\s*["']([^"']+)["']/gm)].map(m => m[1]);
-const urls = new Set(['/', '/about', '/contact', '/privacy-policy']);
+const urls = new Set(['/', '/about', '/contact', '/privacy-policy', '/ceiling-cloth-hangers-chennai']);
 locationSlugs.forEach(slug => {
   urls.add(slug === 'chennai' ? '/invisible-grills-chennai' : `/invisible-grills-${slug}`);
 });

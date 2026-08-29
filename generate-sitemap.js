@@ -23,7 +23,7 @@ for (const line of lines) {
   }
 }
 
-const urls = new Set(['/','/about','/contact','/privacy-policy']);
+const urls = new Set(['/','/about','/contact','/privacy-policy','/ceiling-cloth-hangers-chennai']);
 for (const slug of locationSlugs) {
   urls.add(slug === 'chennai' ? '/invisible-grills-chennai' : `/invisible-grills-${slug}`);
 }

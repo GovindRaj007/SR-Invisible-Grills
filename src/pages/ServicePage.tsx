@@ -8,7 +8,11 @@ import FAQAccordion from '@/components/FAQAccordion';
 import CTASection from '@/components/CTASection';
 import ServicePageSlider from '@/components/ServicePageSlider';
 import ProgressiveImage from '@/components/ProgressiveImage';
-import * as LucideIcons from 'lucide-react';
+import {
+  Baby, BadgeCheck, Bird, Building, Building2, Check, CircleDot, Clock, Dog, Droplets, Eye,
+  Heart, Home, IndianRupee, LayoutGrid, Lock, Maximize2, Paintbrush, Ruler, Shield,
+  ShieldCheck, Shirt, Sun, Trophy, Warehouse, Wind, Wrench,
+} from 'lucide-react';
 import NotFound from './NotFound';
 
 export default function ServicePage() {
@@ -22,8 +26,16 @@ export default function ServicePage() {
   const images = serviceImages[`${categorySlug}/${serviceSlug}`] || [];
   const overviewImage = serviceCardImages[`${categorySlug}/${serviceSlug}`];
 
+  // Explicit map — a namespace import of lucide-react defeats tree-shaking and pulled the
+  // entire icon set (~811 kB) into the shared vendor chunk loaded on every page.
+  const iconMap: Record<string, React.ElementType> = {
+    Baby, BadgeCheck, Bird, Building, Building2, CircleDot, Clock, Dog, Droplets, Eye,
+    Heart, Home, IndianRupee, LayoutGrid, Lock, Maximize2, Paintbrush, Ruler, Shield,
+    ShieldCheck, Shirt, Sun, Trophy, Warehouse, Wind, Wrench,
+  };
+
   const getIcon = (name: string) => {
-    const Icon = (LucideIcons as any)[name];
+    const Icon = iconMap[name];
     return Icon ? <Icon className="w-5 h-5 text-[#7DD3FC]" /> : null;
   };
 
@@ -206,7 +218,7 @@ export default function ServicePage() {
             {service.safetyStandards.map((std) => (
               <li key={std} className="flex items-start gap-3 text-foreground">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                  <LucideIcons.Check className="w-3 h-3 text-primary" />
+                  <Check className="w-3 h-3 text-primary" />
                 </span>
                 <span className="text-sm">{std}</span>
               </li>

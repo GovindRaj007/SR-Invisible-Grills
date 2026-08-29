@@ -47,6 +47,9 @@ export default defineConfig({
           if (id.includes('/pages/PrivacyPolicy')) {
             return 'page-privacy';
           }
+          if (id.includes('/pages/CeilingClothHangersLanding')) {
+            return 'page-cloth-hangers-lp';
+          }
           
           // Component chunks for heavy components
           if (id.includes('/components/ImageShowcase')) {
