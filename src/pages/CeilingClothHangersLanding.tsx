@@ -11,7 +11,7 @@ const FORMSPREE = 'https://formspree.io/f/xykrzgjn';
 const TEL = `tel:${BUSINESS.phone}`;
 const TEL_ALT = `tel:${BUSINESS.secondaryPhone}`;
 const wa = (text: string) => `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(text)}`;
-/** "+91-7670984773" -> "+91 76709 84773" */
+/** "+91-9121149915" -> "+91 91211 49915" */
 const prettyPhone = (raw: string) => {
   const digits = raw.replace(/\D/g, '').replace(/^91/, '');
   return digits.length === 10 ? `+91 ${digits.slice(0, 5)} ${digits.slice(5)}` : raw;
