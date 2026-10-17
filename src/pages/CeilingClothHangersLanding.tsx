@@ -9,7 +9,6 @@ import './ceiling-cloth-hangers-landing.css';
 const CANONICAL = 'https://srinvisiblegrillschennai.in/ceiling-cloth-hangers-chennai';
 const FORMSPREE = 'https://formspree.io/f/xykrzgjn';
 const TEL = `tel:${BUSINESS.phone}`;
-const TEL_ALT = `tel:${BUSINESS.secondaryPhone}`;
 const wa = (text: string) => `https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(text)}`;
 /** "+91-9121149915" -> "+91 91211 49915" */
 const prettyPhone = (raw: string) => {
@@ -17,7 +16,6 @@ const prettyPhone = (raw: string) => {
   return digits.length === 10 ? `+91 ${digits.slice(0, 5)} ${digits.slice(5)}` : raw;
 };
 const PHONE = prettyPhone(BUSINESS.phone);
-const PHONE_ALT = prettyPhone(BUSINESS.secondaryPhone);
 
 /* Inline glyphs — avoids pulling further icons into the shared vendor chunk. */
 const CheckIcon = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" /></svg>;
@@ -560,8 +558,7 @@ export default function CeilingClothHangersLanding() {
             <a className="btn btn-ghost" href="#quote">Request a Callback</a>
           </div>
           <p className="cta-phones">
-            Or reach us on <a href={TEL}>{PHONE}</a> ·{' '}
-            <a href={TEL_ALT}>{PHONE_ALT}</a> · {BUSINESS.hours}
+            Or reach us on <a href={TEL}>{PHONE}</a> · {BUSINESS.hours}
           </p>
         </div>
       </section>

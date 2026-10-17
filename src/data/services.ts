@@ -29,7 +29,6 @@ export const BUSINESS = {
   name: "SR Invisible Grills & Safety Nets",
   tagline: "Exterior Safety Solutions",
   phone: "+91-9121149915",
-  secondaryPhone: "+91-9121149915",
   whatsapp: "919121149915",
   email: "sr.securesolutions.tn@gmail.com",
   address: "Door no: 8/3, 14th St, Vallal Pari Nagar, Pari Nagar, Pallikaranai, Chennai, Greater Chennai, Tamil Nadu 600100",

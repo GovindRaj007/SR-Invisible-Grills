@@ -18,7 +18,7 @@ const localBusinessJsonLd = {
   '@type': 'LocalBusiness',
   name: BUSINESS.name,
   description: 'SR Invisible Grills & Safety Nets provides invisible grills, safety nets, sports nets, and ceiling cloth drying hangers in Chennai.',
-  telephone: [BUSINESS.phone, BUSINESS.secondaryPhone],
+  telephone: BUSINESS.phone,
   email: BUSINESS.email,
   address: {
     '@type': 'PostalAddress',
@@ -34,13 +34,6 @@ const localBusinessJsonLd = {
     {
       '@type': 'ContactPoint',
       telephone: BUSINESS.phone,
-      contactType: 'customer service',
-      areaServed: 'IN',
-      availableLanguage: ['en', 'ta'],
-    },
-    {
-      '@type': 'ContactPoint',
-      telephone: BUSINESS.secondaryPhone,
       contactType: 'customer service',
       areaServed: 'IN',
       availableLanguage: ['en', 'ta'],

@@ -70,12 +70,6 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-[#7DD3FC]" /> {BUSINESS.phone}
               </a>
               <a
-                href={`tel:${BUSINESS.secondaryPhone}`}
-                className="flex items-center gap-2 hover:text-primary transition-colors"
-              >
-                <Phone className="w-4 h-4 text-[#7DD3FC]" /> {BUSINESS.secondaryPhone}
-              </a>
-              <a
                 href={`mailto:${BUSINESS.email}`}
                 className="flex items-center gap-2 hover:text-primary transition-colors"
               >
